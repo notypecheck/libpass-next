@@ -6,7 +6,7 @@ import functools
 import re
 import typing
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, ClassVar, TypeVar
+from typing import TYPE_CHECKING, ClassVar, Optional, TypeVar
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -34,7 +34,7 @@ class ParsedParameter:
 @dataclasses.dataclass
 class PHC:
     id: str
-    version: ClassVar[int | None]
+    version: ClassVar[Optional[int]]
 
     salt: str
     hash: str
