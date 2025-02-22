@@ -4,7 +4,17 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "typing-extensions>=4.2.0",
+]
+
+[project.optional-dependencies]
+bcrypt = [
+    "bcrypt>=4.2.1",
+]
+argon = [
+    "argon2-cffi>=23.1.0",
+]
 
 [dependency-groups]
 lint = [
@@ -67,7 +77,11 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"libpass" = []
+"tests/*" = ["S101", "FBT001", "A005", "PLR0913"]
+
+[tool.ruff.lint.flake8-builtins]
+builtins-ignorelist = ["hash", "id"]
+builtins-allowed-modules = ["inspect"]
 
 
 [tool.commitizen]
