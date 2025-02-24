@@ -52,7 +52,9 @@ addopts = "-W error::Warning"
 
 [tool.coverage.run]
 source = ["libpass"]
-omit = []
+omit = [
+    "libpass/_utils/protocols.py",
+]
 command_line = "-m pytest -v"
 branch = true
 

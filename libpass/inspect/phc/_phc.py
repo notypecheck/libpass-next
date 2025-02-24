@@ -71,12 +71,14 @@ def _parse_phc_def(definition: type[TPHC]) -> _PHCDefinitionInfo:
 
     id_arg = hints["id"]
     if typing.get_origin(id_arg) != typing.Literal:
-        raise ValueError
+        err_msg = f"{definition.__name__}.id field must be a Literal"
+        raise ValueError(err_msg)
+
     id = typing.get_args(id_arg)
     return _PHCDefinitionInfo(id=id, parameters=result)
 
 
-if not TYPE_CHECKING:
+if not TYPE_CHECKING:  # pragma: no branch
     _parse_phc_def = functools.cache(_parse_phc_def)
 
 
