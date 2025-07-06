@@ -5,7 +5,7 @@ description = "Password hashing library, rewrite of passlib."
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
-    { name = "Doctor", email = "thirvondukr@gmail.com" },
+    { name = "Doctor", email = "notypecheck@gmail.com" },
 ]
 classifiers = [
     "Intended Audience :: Developers",
@@ -35,8 +35,8 @@ argon = [
 [dependency-groups]
 lint = [
     "deptry>=0.23.0",
-    "mypy>=1.15.0",
-    "ruff>=0.9.7",
+    "mypy>=1.16.1",
+    "ruff>=0.12.2",
 ]
 test = [
     "coverage>=7.6.12",
@@ -46,6 +46,11 @@ test = [
     "pytest-xdist>=3.6.1",
     "typeguard>=4.4.2",
 ]
+
+
+[tool.uv]
+default-groups = "all"
+
 
 [tool.pytest.ini_options]
 addopts = "-W error::Warning"

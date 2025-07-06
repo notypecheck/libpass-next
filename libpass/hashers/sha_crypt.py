@@ -9,7 +9,7 @@ from libpass._utils.binary import B64_CHARS, h64_engine
 from libpass._utils.bytes import StrOrBytes, as_bytes, as_str
 from libpass._utils.str import repeat_string
 from libpass._utils.validation import validate_rounds
-from libpass.hashers._abc import PasswordHasher
+from libpass.hashers.abc import PasswordHasher
 from libpass.inspect.sha_crypt import (
     SHA256CryptInfo,
     SHA512CryptInfo,
@@ -342,7 +342,7 @@ class _ShaHasher(PasswordHasher):
 
 
 class SHA256Hasher(_ShaHasher):
-    _sha_func = hashlib.sha256
+    _sha_func = hashlib.sha256  # type: ignore[assignment]
     _transpose_map = _256_transpose_map
     _info_cls = SHA256CryptInfo
 
@@ -351,7 +351,7 @@ class SHA256Hasher(_ShaHasher):
 
 
 class SHA512Hasher(_ShaHasher):
-    _sha_func = hashlib.sha512
+    _sha_func = hashlib.sha512  # type: ignore[assignment]
     _transpose_map = _512_transpose_map
     _info_cls = SHA512CryptInfo
 

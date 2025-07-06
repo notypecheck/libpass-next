@@ -1,8 +1,10 @@
 import pytest
 
 from libpass.context import CryptContext
+from libpass.errors import UnknownHashError
 from libpass.hashers.bcrypt import BcryptHasher, BcryptSHA256Hasher
 from libpass.hashers.sha_crypt import SHA256Hasher
+from libpass.hashers.unix_disabled import UnixDisabled
 from libpass.inspect.bcrypt import inspect_bcrypt_hash
 from libpass.inspect.phc import inspect_phc
 from libpass.inspect.phc.defs import BcryptSHA256PHCV2
@@ -71,3 +73,31 @@ def test_needs_update() -> None:
     assert context.needs_update(deprecated_hash) is True
     assert context.needs_update(unknown_hash) is True
     assert context.needs_update("Random String") is True
+
+
+def test_disable() -> None:
+    bcrypt_hasher = BcryptHasher()
+    context = CryptContext(schemes=[bcrypt_hasher, UnixDisabled()])
+
+    hash = context.hash(secret="secret")  # noqa: S106
+    assert bcrypt_hasher.identify(hash)
+    assert context.disable(hash) == f"!{hash}"
+
+
+def test_disable_with_no_disabled_hasher() -> None:
+    context = CryptContext(schemes=[BcryptHasher()])
+    with pytest.raises(
+        ValueError, match="At least one DisabledHasher must be configured"
+    ):
+        assert context.disable("hash")
+
+
+def test_enable() -> None:
+    context = CryptContext(schemes=[UnixDisabled()])
+    assert context.enable("!hash") == "hash"
+
+
+def test_enable_unknown_hash() -> None:
+    context = CryptContext(schemes=[UnixDisabled()])
+    with pytest.raises(UnknownHashError):
+        assert context.enable("#hash")

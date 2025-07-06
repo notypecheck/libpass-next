@@ -9,7 +9,7 @@ import bcrypt
 
 from libpass._utils.bytes import StrOrBytes, as_bytes, as_str
 from libpass.errors import Panic
-from libpass.hashers._abc import PasswordHasher
+from libpass.hashers.abc import PasswordHasher
 from libpass.inspect.bcrypt import (
     BcryptHashInfo,
     inspect_bcrypt_hash,

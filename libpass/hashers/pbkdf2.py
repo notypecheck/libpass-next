@@ -9,7 +9,7 @@ from libpass._salt import generate_salt_by_entropy
 from libpass._utils.b64 import Base64Encoder
 from libpass._utils.bytes import as_bytes, as_str
 from libpass._utils.deprecated import ab64_decode, ab64_encode
-from libpass.hashers._abc import PasswordHasher
+from libpass.hashers.abc import PasswordHasher
 from libpass.inspect.pbkdf2 import (
     BasePBKDF2CryptInfo,
     PBKDF2SHA256CryptInfo,

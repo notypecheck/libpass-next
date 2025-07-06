@@ -7,7 +7,7 @@ import argon2
 from argon2.exceptions import InvalidHashError, VerifyMismatchError
 
 from libpass._utils.bytes import StrOrBytes, as_bytes, as_str
-from libpass.hashers._abc import PasswordHasher
+from libpass.hashers.abc import PasswordHasher
 from libpass.inspect.phc import inspect_phc
 from libpass.inspect.phc.defs import Argon2PHC
 
