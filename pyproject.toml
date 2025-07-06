@@ -26,10 +26,10 @@ dependencies = [
 
 [project.optional-dependencies]
 bcrypt = [
-    "bcrypt>=4.2.1",
+    "bcrypt>=4.3.0",
 ]
 argon = [
-    "argon2-cffi>=23.1.0",
+    "argon2-cffi>=25.1.0",
 ]
 
 [dependency-groups]
@@ -39,11 +39,10 @@ lint = [
     "ruff>=0.12.2",
 ]
 test = [
-    "coverage>=7.6.12",
+    "coverage>=7.9.2",
     "pytest>=8.3.4",
-    "pytest-archon>=0.0.6",
-    "pytest-cov>=6.0.0",
-    "pytest-xdist>=3.6.1",
+    "pytest-cov>=6.2.1",
+    "pytest-xdist>=3.8.0",
     "typeguard>=4.4.2",
 ]
 
